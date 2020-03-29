@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(value = MicroServices.GOODS_SERVICE, fallback = GoodsFeignClientFallBack.class)
 public interface GoodsFeignClient {
 
-    @PostMapping("/prd")
+    @PostMapping("/goods/prd")
     Response preReduce(@RequestBody FlashSaleDTO flashSaleDTO);
 
-    @PostMapping("/rdg")
+    @PostMapping("/goods/rdg")
     Response reduceGoods(@RequestBody FlashSaleDTO flashSaleDTO);
 
-    @PostMapping("/prr")
+    @PostMapping("/goods/prr")
     Response preReduceRollback(@RequestBody FlashSaleDTO flashSaleDTO);
 }

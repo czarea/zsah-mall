@@ -1,6 +1,6 @@
 package com.czarea.zsah.goods.config;
 
-import com.czarea.zsah.goods.job.GoodsReduceFallback;
+import com.czarea.zsah.goods.job.GoodsReduceFallBackJob;
 import org.quartz.Job;
 import org.quartz.JobDetail;
 import org.quartz.SimpleTrigger;
@@ -32,7 +32,7 @@ public class SchedulerConfig {
 
     @Bean
     public JobDetailFactoryBean goodsReduceFallBackJobDetail() {
-        return createJobDetail(GoodsReduceFallback.class);
+        return createJobDetail(GoodsReduceFallBackJob.class);
     }
 
     @Bean

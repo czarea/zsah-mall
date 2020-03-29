@@ -1,6 +1,7 @@
 package com.czarea.zsah.order.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.czarea.zsah.common.dto.FlashSaleDTO;
 import com.czarea.zsah.order.entity.Order;
 import com.czarea.zsah.common.vo.Response;
 
@@ -13,5 +14,5 @@ public interface OrderService extends IService<Order> {
 
     Response<Void> commit(Long orderId);
 
-    Response<Void> timeOut(Long orderId);
+    Response<Void> timeOut(FlashSaleDTO flashSaleDTO);
 }
