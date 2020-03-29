@@ -1,0 +1,17 @@
+jar {
+    enabled = true
+}
+
+dependencies {
+    compileOnly 'org.springframework:spring-jdbc'
+    compileOnly "com.baomidou:mybatis-plus:3.1.0"
+
+    api ("com.alibaba:fastjson:$fastjson")
+    api ("org.apache.commons:commons-pool2:$commonsPool2")
+
+    compileOnly 'org.springframework.session:spring-session-data-redis'
+    compileOnly 'org.springframework.boot:spring-boot-starter-data-redis'
+    compileOnly 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+}

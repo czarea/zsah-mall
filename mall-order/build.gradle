@@ -1,0 +1,27 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation project(":mall-common")
+
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+
+    //db
+    implementation("com.baomidou:mybatis-plus-boot-starter:${mybatisPlus}")
+    implementation('mysql:mysql-connector-java')
+
+
+
+    //redis
+    implementation('org.springframework.session:spring-session-data-redis')
+    implementation('org.springframework.boot:spring-boot-starter-data-redis')
+
+    //nacos
+    implementation('org.springframework.cloud:spring-cloud-starter-alibaba-nacos-discovery')
+    implementation('org.springframework.cloud:spring-cloud-starter-alibaba-nacos-config')
+
+
+    //feign hystrix
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
+    implementation('org.springframework.cloud:spring-cloud-starter-openfeign')
+}

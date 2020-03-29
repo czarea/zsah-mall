@@ -1,0 +1,6 @@
+rootProject.name = 'mall'
+include 'mall-gateway'
+include 'mall-goods'
+include 'mall-order'
+include 'mall-common'
+
