@@ -31,7 +31,7 @@ public class GoodsReduceFallBackJob implements Job {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        logger.info("开始清理！！！");
+        //logger.info("开始清理！！！");
 
         Set<Object> timeOutPreOrder = redisTemplate.opsForSet().members("PRE_REDUCE");
 
@@ -57,6 +57,6 @@ public class GoodsReduceFallBackJob implements Job {
             }
         });
 
-        logger.info("清理完成！！！");
+        //logger.info("清理完成！！！");
     }
 }

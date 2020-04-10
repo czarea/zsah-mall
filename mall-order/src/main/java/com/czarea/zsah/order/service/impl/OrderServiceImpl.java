@@ -1,5 +1,6 @@
 package com.czarea.zsah.order.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -9,6 +10,7 @@ import com.czarea.zsah.order.mapper.OrderMapper;
 import com.czarea.zsah.order.service.OrderService;
 import com.czarea.zsah.common.dto.FlashSaleDTO;
 import com.czarea.zsah.common.vo.Response;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,9 +20,12 @@ import org.springframework.stereotype.Service;
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
 
     private final GoodsFeignClient goodsFeignClient;
+    private final KafkaTemplate<String,String> kafkaTemplate;
 
-    public OrderServiceImpl(GoodsFeignClient goodsFeignClient) {
+    public OrderServiceImpl(GoodsFeignClient goodsFeignClient,
+        KafkaTemplate<String, String> kafkaTemplate) {
         this.goodsFeignClient = goodsFeignClient;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     @Override
@@ -72,5 +77,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         uOrder.setStatus(4);
         baseMapper.update(uOrder, query);
         return Response.SUCCESS;
+    }
+
+    @Override
+    public Response<Void> secKill(Order order) {
+        kafkaTemplate.send("topic1", JSON.toJSONString(order));
+        FlashSaleDTO flashSale = new FlashSaleDTO();
+        flashSale.setNumber(order.getNumber());
+        flashSale.setUserId(order.getUserId());
+        flashSale.setGoodsId(order.getGoodsId());
+        return goodsFeignClient.secKill(flashSale);
     }
 }

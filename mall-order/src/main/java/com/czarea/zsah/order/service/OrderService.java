@@ -15,4 +15,6 @@ public interface OrderService extends IService<Order> {
     Response<Void> commit(Long orderId);
 
     Response<Void> timeOut(FlashSaleDTO flashSaleDTO);
+
+    Response<Void> secKill(Order order);
 }

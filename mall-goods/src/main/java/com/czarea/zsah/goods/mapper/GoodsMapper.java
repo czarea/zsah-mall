@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Update;
 /**
  * @author zhoux
  */
-@Mapper
 public interface GoodsMapper extends BaseMapper<Goods> {
 
     @Update("update t_goods t set t.store = t.store + #{number} where t.id=#{goodsId} and t.version=#{version}")

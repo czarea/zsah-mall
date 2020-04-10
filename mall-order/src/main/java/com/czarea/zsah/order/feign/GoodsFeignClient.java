@@ -22,4 +22,7 @@ public interface GoodsFeignClient {
 
     @PostMapping("/goods/prr")
     Response preReduceRollback(@RequestBody FlashSaleDTO flashSaleDTO);
+
+    @PostMapping("/goods/seckill")
+    Response secKill(@RequestBody FlashSaleDTO flashSale);
 }

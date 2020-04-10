@@ -13,16 +13,21 @@ public class GoodsFeignClientFallBack implements GoodsFeignClient {
 
     @Override
     public Response preReduce(FlashSaleDTO flashSaleDTO) {
-        return Response.SYSTEM_ERROR;
+        return Response.SERVICE_FALL_BACK;
     }
 
     @Override
     public Response reduceGoods(FlashSaleDTO flashSaleDTO) {
-        return Response.SYSTEM_ERROR;
+        return Response.SERVICE_FALL_BACK;
     }
 
     @Override
     public Response preReduceRollback(FlashSaleDTO flashSaleDTO) {
-        return Response.SYSTEM_ERROR;
+        return Response.SERVICE_FALL_BACK;
+    }
+
+    @Override
+    public Response secKill(FlashSaleDTO flashSale) {
+        return Response.SERVICE_FALL_BACK;
     }
 }

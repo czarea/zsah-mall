@@ -10,7 +10,8 @@ dependencies {
     implementation("com.baomidou:mybatis-plus-boot-starter:${mybatisPlus}")
     implementation('mysql:mysql-connector-java')
 
-
+    //kafka
+    implementation 'org.springframework.kafka:spring-kafka'
 
     //redis
     implementation('org.springframework.session:spring-session-data-redis')

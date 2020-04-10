@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Update;
 /**
  * @author zhoux
  */
-@Mapper
 public interface OrderMapper extends BaseMapper<Order> {
 
     /**

@@ -13,13 +13,15 @@ spring:
         group: mall
       discovery:
         server-addr: 127.0.0.1:8848
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
 feign:
   hystrix:
     enabled: true
   client:
     config:
       default:
-        connectTimeout: 5000
+        connectTimeout: 1000
         readTimeout: 1000
         loggerLevel: basic
 ribbon:

@@ -1,6 +1,7 @@
 package com.czarea.zsah.order;
 
 import java.util.concurrent.TimeUnit;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableFeignClients
 @SpringCloudApplication
+@MapperScan("com.czarea.zsah.order.**.mapper")
 public class OrderApplication {
 
     public static void main(String[] args) {

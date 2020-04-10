@@ -30,12 +30,12 @@ public class SchedulerConfig {
         return jobFactory;
     }
 
-    @Bean
+    //@Bean
     public JobDetailFactoryBean goodsReduceFallBackJobDetail() {
         return createJobDetail(GoodsReduceFallBackJob.class);
     }
 
-    @Bean
+    //@Bean
     public CronTriggerFactoryBean goodsReduceFallBackJobTrigger(@Qualifier("goodsReduceFallBackJobDetail") JobDetail jobDetail,
         @Value("${quartz.goodsReduceJobCron}") String cronExpression) {
         return createCronTrigger(jobDetail, cronExpression);

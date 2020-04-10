@@ -3,6 +3,9 @@ apply plugin: 'org.springframework.boot'
 dependencies {
     implementation project(":mall-common")
 
+    //kafka
+    implementation 'org.springframework.kafka:spring-kafka'
+
     //quartz
     implementation('org.springframework.boot:spring-boot-starter-quartz')
 

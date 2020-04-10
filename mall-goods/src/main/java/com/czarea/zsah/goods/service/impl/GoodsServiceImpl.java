@@ -10,7 +10,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.scripting.support.ResourceScriptSource;
 import org.springframework.stereotype.Service;
 
 /**
@@ -71,6 +74,27 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
             updateCount = baseMapper.preReduceRollBack(flashSaleDTO.getNumber(), flashSaleDTO.getGoodsId(), goods.getVersion());
         }
         return Response.SUCCESS;
+    }
+
+    @Override
+    public Response secKill(FlashSaleDTO flashSaleDTO) {
+        DefaultRedisScript<Long> script = new DefaultRedisScript<>();
+        script.setResultType(Long.class);
+        script.setScriptSource(new ResourceScriptSource(new ClassPathResource("seckill.lua")));
+
+        DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>();
+        redisScript.setResultType(Long.class);
+        redisScript.setScriptSource
+            (new ResourceScriptSource(new ClassPathResource("seckill.lua")));
+        Long result = (Long) redisTemplate.execute(
+            script,
+            Collections.singletonList(flashSaleDTO.getGoodsId() + ""),
+            "" + flashSaleDTO.getUserId());
+
+        if (result == 1) {
+            return Response.SUCCESS;
+        }
+        return Response.fail(1000, "抢购失败失败！");
     }
 
     /**

@@ -23,6 +23,11 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    @PostMapping("/seckill")
+    public Response<Void> secKill(@RequestBody Order order) {
+        return orderService.secKill(order);
+    }
+
     @PostMapping("/pre")
     public Response<Void> preOrder(@RequestBody Order order) {
         return orderService.preOrder(order);

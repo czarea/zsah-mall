@@ -48,6 +48,11 @@ public class GoodsController {
         return goodsService.preReduce(flashSaleDTO);
     }
 
+    @PostMapping("/seckill")
+    public Response secKill(@RequestBody FlashSaleDTO flashSaleDTO) {
+        return goodsService.secKill(flashSaleDTO);
+    }
+
     /**
      * 支付超时回滚新增库存
      */
