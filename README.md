@@ -7,6 +7,8 @@
 
 curl -H "Content-Type:application/json" -H "Data_Type:msg" -X POST --data '{"goodsId":1,"number":12,"userId":4} ' http://localhost:7000/api/order/order/seckill
 
+其他/pre或者/commit/{id}，是另外一种不完美的方案，可以不考虑
+
 ```
 
 ## 秒杀系统特点
