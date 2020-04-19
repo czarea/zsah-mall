@@ -1,6 +1,5 @@
 package com.czarea.zsah.order.feign;
 
-import com.czarea.zsah.order.feign.fallback.GoodsFeignClientFallBack;
 import com.czarea.zsah.common.constant.MicroServices;
 import com.czarea.zsah.common.dto.FlashSaleDTO;
 import com.czarea.zsah.common.vo.Response;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * @author zhouzx
  */
-@FeignClient(value = MicroServices.GOODS_SERVICE, fallback = GoodsFeignClientFallBack.class)
+@FeignClient(value = MicroServices.GOODS_SERVICE) //, fallback = GoodsFeignClientFallBack.class)
 public interface GoodsFeignClient {
 
     @PostMapping("/goods/prd")

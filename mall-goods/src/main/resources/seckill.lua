@@ -5,22 +5,18 @@ local product_id = KEYS[1]
 local user_id = ARGV[1]
 local product_key = 'seckill:' .. product_id .. ':stock'
 
-redis.log(redis.LOG_DEBUG,product_id)
+redis.log(redis.LOG_DEBUG,'pid:' .. product_id)
 
-redis.log(redis.LOG_DEBUG,user_id)
+redis.log(redis.LOG_DEBUG,'uid:' .. user_id)
 
--- seckill:1:uids
 local bought_users_key = 'seckill:' .. product_id .. ':uids'
 
--- 判断用户是否秒杀过
 local is_in = redis.call('sismember',bought_users_key, user_id)
 
--- 如果user_id在秒杀过用户的名单里,则返回重复购买
 if is_in > 0 then
 	return 0
 end
 
--- 获取商品当前库存
 local stock = redis.call('get',product_key)
 
 -- 如果库存<=0 ,则返回-1

@@ -81,11 +81,14 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
     @Override
     public Response<Void> secKill(Order order) {
-        kafkaTemplate.send("topic1", JSON.toJSONString(order));
         FlashSaleDTO flashSale = new FlashSaleDTO();
         flashSale.setNumber(order.getNumber());
         flashSale.setUserId(order.getUserId());
         flashSale.setGoodsId(order.getGoodsId());
-        return goodsFeignClient.secKill(flashSale);
+        Response response = goodsFeignClient.secKill(flashSale);
+        if (response.isSuccess()) {
+            kafkaTemplate.send("topic1", JSON.toJSONString(order));
+        }
+        return response;
     }
 }

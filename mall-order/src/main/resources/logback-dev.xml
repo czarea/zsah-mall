@@ -16,6 +16,7 @@
   <logger name="ch.qos.logback.classic"  level="info" />
   <logger name="org.springframework"  level="info" />
   <Logger name="org.apache.kafka" level="info" />
+  <Logger name="org.apache.skywalking" level="info" />
   <Logger name="org.apache.http" level="info" />
   <Logger name="com.alibaba.nacos" level="error" />
   <Logger name="io.lettuce.core" level="info" />

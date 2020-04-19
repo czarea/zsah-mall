@@ -49,7 +49,7 @@ public class GoodsController {
     }
 
     @PostMapping("/seckill")
-    public Response secKill(@RequestBody FlashSaleDTO flashSaleDTO) {
+    public Response secKill(@RequestBody FlashSaleDTO flashSaleDTO) throws InterruptedException {
         return goodsService.secKill(flashSaleDTO);
     }
 

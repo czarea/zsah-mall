@@ -3,6 +3,7 @@ com.czarea.zsah.common.config.MyFastJsonConfig,\
 com.czarea.zsah.common.config.redis.RedisConfig,\
 com.czarea.zsah.common.config.MybatisPlusConfig,\
 com.czarea.zsah.common.config.GlobalExceptionHandler,\
-com.czarea.zsah.common.config.TransactionConfig
+com.czarea.zsah.common.config.TransactionConfig,\
+com.czarea.zsah.common.config.feign.FeignConfiguration
 
 org.springframework.cloud.bootstrap.BootstrapConfiguration=

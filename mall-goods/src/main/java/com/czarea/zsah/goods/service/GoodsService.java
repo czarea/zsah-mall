@@ -25,5 +25,5 @@ public interface GoodsService extends IService<Goods> {
      */
     Response preReduceRollback(FlashSaleDTO flashSaleDTO);
 
-    Response secKill(FlashSaleDTO flashSaleDTO);
+    Response secKill(FlashSaleDTO flashSaleDTO) throws InterruptedException;
 }

@@ -9,6 +9,9 @@ import com.czarea.zsah.common.vo.Response;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import org.apache.commons.lang3.RandomUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,6 +24,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements GoodsService, CommandLineRunner {
+
+    private static final Logger logger = LoggerFactory.getLogger(GoodsServiceImpl.class);
 
     private final RedisTemplate redisTemplate;
 
@@ -77,19 +82,19 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
     }
 
     @Override
-    public Response secKill(FlashSaleDTO flashSaleDTO) {
+    public Response secKill(FlashSaleDTO flashSaleDTO) throws InterruptedException {
+        long sleeps = RandomUtils.nextLong(910, 1002);
+        Thread.sleep(sleeps);
+
+        logger.info("next........... {}", sleeps);
+
         DefaultRedisScript<Long> script = new DefaultRedisScript<>();
         script.setResultType(Long.class);
         script.setScriptSource(new ResourceScriptSource(new ClassPathResource("seckill.lua")));
 
-        DefaultRedisScript<Long> redisScript = new DefaultRedisScript<>();
-        redisScript.setResultType(Long.class);
-        redisScript.setScriptSource
-            (new ResourceScriptSource(new ClassPathResource("seckill.lua")));
         Long result = (Long) redisTemplate.execute(
             script,
-            Collections.singletonList(flashSaleDTO.getGoodsId() + ""),
-            "" + flashSaleDTO.getUserId());
+            Collections.singletonList(flashSaleDTO.getGoodsId() + ""), "" + flashSaleDTO.getUserId());
 
         if (result == 1) {
             return Response.SUCCESS;
